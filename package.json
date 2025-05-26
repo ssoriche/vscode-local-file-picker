@@ -1,0 +1,56 @@
+{
+  "name": "vscode-local-file-picker",
+  "displayName": "Local File Picker",
+  "description": "Quick file picker that shows files in the current buffer's directory",
+  "version": "0.1.0",
+  "publisher": "ssoriche",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssoriche/vscode-local-file-picker.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "file picker",
+    "quick open",
+    "file navigation",
+    "local files"
+  ],
+  "activationEvents": [
+    "onCommand:local-file-picker.showFiles"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "local-file-picker.showFiles",
+        "title": "Show Files in Current Directory"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.3",
+    "@babel/eslint-parser": "^7.27.1",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.3.8",
+    "chai": "^4.3.7",
+    "eslint": "^8.47.0",
+    "mocha": "^10.2.0",
+    "vsce": "^2.15.0"
+  },
+  "license": "MIT"
+}
