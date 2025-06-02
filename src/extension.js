@@ -25,14 +25,18 @@ function activate(context) {
         const files = await fs.promises.readdir(currentDir);
 
         // Create QuickPick items for each file
-        const items = files.map((file) => ({
-          label: file,
-          description: path.relative(currentDir, path.join(currentDir, file)),
-          detail: fs.statSync(path.join(currentDir, file)).isDirectory()
-            ? '$(folder)'
-            : '$(file)',
-          fsPath: path.join(currentDir, file),
-        }));
+        const items = await Promise.all(
+          files.map(async (file) => {
+            const filePath = path.join(currentDir, file);
+            const stat = await fs.promises.stat(filePath);
+            return {
+              label: file,
+              description: path.relative(currentDir, filePath),
+              detail: stat.isDirectory() ? '$(folder)' : '$(file)',
+              fsPath: filePath,
+            };
+          })
+        );
 
         // Show QuickPick with files
         const selected = await vscode.window.showQuickPick(items, {
