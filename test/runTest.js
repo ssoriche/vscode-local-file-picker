@@ -6,7 +6,7 @@ async function main() {
     // The folder containing the Extension Manifest package.json
     const extensionDevelopmentPath = path.resolve(__dirname, '../');
 
-    // The path to the extension test script - FIXED: added .js extension
+    // The path to the extension test script, including the .js extension for proper resolution
     const extensionTestsPath = path.resolve(
       __dirname,
       './suite/index.js'  // Changed from './suite/extension.test' to './suite/index.js'
